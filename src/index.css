@@ -16,6 +16,8 @@ code {
     monospace;
 }
 
-:root {
-  background: rgb(120, 120, 120);
+@layer base {
+  :root {
+    background: rgb(120, 120, 120);
+  }
 }
