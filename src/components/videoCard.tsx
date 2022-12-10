@@ -1,9 +1,9 @@
-import { VideoListProp } from "../types";
+import { VideoProp } from "../types";
 
-function VideoCard({ videoDetail }: VideoListProp) {
-  const { snippet, statistics } = videoDetail;
+function VideoCard({ video }: VideoProp) {
+  const { snippet, statistics } = video;
   return (
-    <div className='p-2 w-1/2 border-2 m-2'>
+    <div className='p-2 w-[400px] border-2 m-2'>
       <div className='w-full border-2 rounded-lg p-2 mb-2'>
         <img
           src={snippet.thumbnails.high.url}
@@ -19,8 +19,12 @@ function VideoCard({ videoDetail }: VideoListProp) {
             <a href='/'>{snippet.channelTitle}</a>
           </span>
           <div className='space-x-2'>
-            <span className='text-sm'>{statistics.viewCount}</span>
-            <span className='text-sm'>{statistics.likeCount}</span>
+            <span className='text-sm'>
+              {statistics ? statistics.viewCount : ""}
+            </span>
+            <span className='text-sm'>
+              {statistics ? statistics.likeCount : ""}
+            </span>
           </div>
         </div>
       </div>

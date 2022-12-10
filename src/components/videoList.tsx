@@ -1,26 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { PopularVideoList } from "../types";
+import { VideoItem, VideoListType } from "../types";
 import VideoCard from "./videoCard";
 
-function VideoList() {
-  const [popVideo, setPopVideo] = useState<PopularVideoList>();
-
-  useEffect(() => {
-    async function getPopularVideos() {
-      const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2Cstatistics&chart=mostPopular&regionCode=US&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
-        { headers: { "Content-Type": "application/json" } }
-      );
-      const result = await response.json();
-      setPopVideo(result);
-    }
-    getPopularVideos();
-  }, []);
-
+function VideoList({ videoList }: VideoListType) {
   return (
-    <div>
-      {popVideo?.items.map((v) => {
-        return <VideoCard videoDetail={v} key={v.id} />;
+    <div className='flex flex-wrap px-2 justify-center'>
+      {videoList?.items.map((video: VideoItem) => {
+        return (
+          <VideoCard
+            video={video}
+            key={typeof video.id !== "object" ? video.id : video.id.videoId}
+          />
+        );
       })}
     </div>
   );
