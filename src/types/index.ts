@@ -12,7 +12,7 @@ export interface VideoItem {
       [key: string]: any;
     };
   };
-  statistics: {
+  statistics?: {
     viewCount: number;
     likeCount: number;
     [key: string]: any;
@@ -20,12 +20,12 @@ export interface VideoItem {
   [key: string]: any;
 }
 
-export interface VideoListProp {
-  videoDetail: VideoItem;
+export interface VideoProp {
+  video: VideoItem;
   [key: string]: any;
 }
 
-export interface PopularVideoList {
+export interface VideoListType {
+  items?: VideoItem[];
   [key: string]: any;
-  items: VideoItem[];
 }

@@ -1,35 +1,19 @@
 import { FormEvent, useState } from "react";
 
-function Header() {
-  const [data, setData] = useState();
-
+function Header({
+  getSearchVideoList,
+}: {
+  getSearchVideoList: (searchTitle: string) => Promise<void>;
+}) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
-    // console.dir(form.elements);
     const formElements = form.elements as HTMLFormControlsCollection & {
       searchBar: { value: string };
     };
 
     const searchBarValue = formElements.searchBar.value;
-
-    async function getSearchVideoList(searchTitle: string) {
-      const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${searchTitle}&regionCode=US&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
-        {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      if (response.ok) {
-        const result = await response.json();
-        setData(result);
-        return result;
-      } else {
-        throw new Error(`net work Error ${response.status}`);
-      }
-    }
-    // getSearchVideoList(searchBarValue);
+    getSearchVideoList(searchBarValue);
   };
 
   return (
