@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Header({
   getSearchVideoList,
@@ -17,9 +18,9 @@ function Header({
   };
 
   return (
-    <div className='w-full h-20 flex items-center mx-10'>
+    <div className='w-full h-20 flex items-center px-4'>
       <div className='text-lg font-bold flex-1'>
-        <a href='/'>MYTUBE</a>
+        <Link to='/'>MYTUBE</Link>
       </div>
       <div className='flex-grow'>
         <form
