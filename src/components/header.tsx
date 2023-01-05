@@ -1,11 +1,9 @@
-import { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Header({
-  getSearchVideoList,
-}: {
-  getSearchVideoList: (searchTitle: string) => Promise<void>;
-}) {
+function Header() {
+  const navigate = useNavigate();
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -14,7 +12,7 @@ function Header({
     };
 
     const searchBarValue = formElements.searchBar.value;
-    getSearchVideoList(searchBarValue);
+    navigate(`/video/${searchBarValue}`);
   };
 
   return (
