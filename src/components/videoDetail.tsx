@@ -1,18 +1,23 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import Channel from "./channel";
 
 function VideoDetail() {
   let { videoId } = useParams();
-  console.log(videoId);
+  const { state } = useLocation();
+  console.log(state);
   return (
-    <div>
+    <div className=''>
       <iframe
         id='existing-iframe-example'
-        width='640'
-        height='360'
+        width='100%'
+        height='640'
         src={`https://www.youtube.com/embed/${videoId}`}
         frameBorder='0'
         title={videoId}
       />
+      <div className='about_channel_container_need_to_be_seperate'>
+        <Channel />
+      </div>
     </div>
   );
 }

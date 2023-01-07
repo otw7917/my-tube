@@ -36,6 +36,7 @@ const router = createBrowserRouter([
       {
         path: "video/watch/:videoId",
         element: <VideoDetail />,
+        loader: mockYoutubeApi.getChannel,
       },
     ],
   },
